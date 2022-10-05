@@ -1,0 +1,53 @@
+table:
+  schema: public
+  name: users
+array_relationships:
+  - name: games
+    using:
+      foreign_key_constraint_on:
+        column: to_kill_id
+        table:
+          schema: public
+          name: games
+  - name: gamesByKilledById
+    using:
+      foreign_key_constraint_on:
+        column: killed_by_id
+        table:
+          schema: public
+          name: games
+  - name: gamesByUserId
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: games
+  - name: kills
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: kills
+computed_fields:
+  - name: fullname
+    definition:
+      function:
+        schema: public
+        name: full_name
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - id
+      computed_fields:
+        - fullname
+      filter: {}
+update_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - is_present
+      filter: {}
+      check: null

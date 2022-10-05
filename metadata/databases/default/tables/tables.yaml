@@ -1,0 +1,5 @@
+- "!include public_actions.yaml"
+- "!include public_events.yaml"
+- "!include public_games.yaml"
+- "!include public_kills.yaml"
+- "!include public_users.yaml"

@@ -1,0 +1,13 @@
+table:
+  schema: public
+  name: game
+object_relationships:
+  - name: event
+    using:
+      foreign_key_constraint_on: event_id
+  - name: user
+    using:
+      foreign_key_constraint_on: to_kill
+  - name: userByUserId
+    using:
+      foreign_key_constraint_on: user_id

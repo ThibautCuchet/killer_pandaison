@@ -6,19 +6,46 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "graphql-codegen generate --config codegen.yml -r dotenv/config.js",
+    "review": "docker-compose down && docker-compose up -d",
+    "console": "hasura console --skip-update-check",
+    "hasura:apply": "npm run hasura:migrate && npm run hasura:metadata",
+    "hasura:migrate": "hasura migrate apply --skip-update-check",
+    "hasura:metadata": "hasura metadata apply --skip-update-check"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.2",
+    "@headlessui/tailwindcss": "^0.1.1",
+    "@heroicons/react": "^2.0.11",
+    "@tanstack/react-query": "^4.7.2",
+    "date-fns": "^2.29.3",
+    "extract-files": "^11.0.0",
+    "form-data": "^4.0.0",
+    "graphql": "^16.6.0",
+    "graphql-tag": "^2.12.6",
+    "lodash": "^4.17.21",
     "next": "12.3.1",
+    "next-auth": "^4.12.0",
     "react": "18.2.0",
+    "react-countdown": "^2.3.2",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.13.1",
+    "@graphql-codegen/introspection": "^2.2.1",
+    "@graphql-codegen/typescript": "^2.7.3",
+    "@graphql-codegen/typescript-operations": "^2.5.3",
+    "@types/extract-files": "^8.1.1",
+    "@types/lodash": "^4.14.185",
     "@types/node": "18.7.23",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
+    "autoprefixer": "^10.4.12",
     "eslint": "8.24.0",
     "eslint-config-next": "12.3.1",
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.1.8",
     "typescript": "4.8.3"
   }
 }

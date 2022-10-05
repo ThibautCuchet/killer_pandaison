@@ -1,0 +1,12 @@
+table:
+  schema: public
+  name: event
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - end_date
+        - id
+        - start_date
+        - type
+      filter: {}

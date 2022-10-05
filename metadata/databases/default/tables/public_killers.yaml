@@ -1,0 +1,25 @@
+table:
+  schema: public
+  name: killers
+object_relationships:
+  - name: current_user
+    using:
+      foreign_key_constraint_on: current_user_id
+  - name: event
+    using:
+      foreign_key_constraint_on: event_id
+  - name: killer
+    using:
+      foreign_key_constraint_on: killer_id
+  - name: user
+    using:
+      foreign_key_constraint_on: first_user_id
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - action
+        - event_id
+        - killer_id
+        - first_user_id
+      filter: {}
