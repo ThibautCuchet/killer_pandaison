@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import differenceInSeconds from "date-fns/differenceInSeconds";
+import { ArrowLeftOnRectangleIcon } from "@heroicons/react/20/solid";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import gql from "graphql-tag";
 import { useContext } from "react";
 import EventInformation from "../components/event-information";
@@ -10,7 +10,7 @@ import {
 } from "../types/graphql";
 import { hasura } from "../utils/gql";
 const Killer = () => {
-  const { event, setEvent } = useContext(GameContext);
+  const { event, setEvent, setUser } = useContext(GameContext);
 
   useQuery(
     ["next-killer"],
@@ -37,13 +37,35 @@ const Killer = () => {
     }
   );
 
+  const logoutMutation = useMutation(["logout"], () => fetch("/api/logout"), {
+    onSuccess: () => {
+      setUser(null);
+    },
+  });
+
+  const handleLogout = () => {
+    const accept = confirm(
+      "Es-tu sûr de vouloir te déconnecter ? Tu seras automatiquement killé !"
+    );
+    if (accept) {
+      logoutMutation.mutate();
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen gap-5">
-      {event ? (
-        <EventInformation />
-      ) : (
-        <div>Il n&lsquo;y a plus de partie de prévue</div>
-      )}
+    <div className="flex flex-col h-screen">
+      <div className="absolute top-0 left-0 flex items-center justify-end w-full h-20 p-3 bg-blue-600">
+        <button onClick={handleLogout}>
+          <ArrowLeftOnRectangleIcon className="w-8 h-8 text-white" />
+        </button>
+      </div>
+      <div className="flex flex-col items-center justify-center flex-1 gap-5">
+        {event ? (
+          <EventInformation />
+        ) : (
+          <div>Il n&lsquo;y a plus de partie de prévue</div>
+        )}
+      </div>
     </div>
   );
 };

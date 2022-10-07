@@ -79,12 +79,12 @@ const SelectUser = () => {
               });
             }}
           >
-            <div className="relative mt-10">
+            <div className="relative w-56 mt-10">
               <div className="relative w-full overflow-hidden text-left bg-white rounded-lg shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
                 <Combobox.Input
                   autoComplete="off"
                   onChange={(event) => setQuery(event.target.value)}
-                  className="w-full py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 border-none focus:ring-0"
+                  className="w-full py-2 pl-3 pr-10 text-lg leading-5 text-gray-900 border-none focus:ring-0"
                   placeholder="Qui es-tu ?"
                 />
                 <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -101,12 +101,12 @@ const SelectUser = () => {
                 leaveTo="opacity-0"
                 afterLeave={() => setQuery("")}
               >
-                <Combobox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                <Combobox.Options className="absolute w-full py-1 mt-1 overflow-auto bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                   {filteredPeople?.map((person) => (
                     <Combobox.Option
                       key={person.id}
                       value={person.id}
-                      className="p-2"
+                      className="p-2 text-lg"
                     >
                       {person.fullname}
                     </Combobox.Option>

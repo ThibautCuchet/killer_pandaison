@@ -1920,3 +1920,10 @@ export type UpdateGameMutationVariables = Exact<{
 
 
 export type UpdateGameMutation = { __typename?: 'mutation_root', killed?: { __typename?: 'games', user_id: any } | null, killer?: { __typename?: 'games', user_id: any } | null };
+
+export type LogoutUserMutationVariables = Exact<{
+  userId: Scalars['uuid'];
+}>;
+
+
+export type LogoutUserMutation = { __typename?: 'mutation_root', update_users_by_pk?: { __typename?: 'users', fullname?: string | null } | null };

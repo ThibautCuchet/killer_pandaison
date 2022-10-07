@@ -21,7 +21,7 @@ export type Event = {
 export interface GameContextType {
   user: User | null;
   event: Event | null;
-  setUser: (user: User) => void;
+  setUser: (user: User | null) => void;
   setEvent: Dispatch<SetStateAction<Event | null>>;
 }
 
@@ -43,7 +43,7 @@ export const GameProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, []);
 
-  const handleSetUser = (user: User) => {
+  const handleSetUser = (user: User | null) => {
     localStorage.setItem("user", JSON.stringify(user));
     setUser(user);
   };
