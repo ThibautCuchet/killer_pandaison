@@ -5,7 +5,6 @@ import { logout } from "../../requests/mutations/logout";
 const handler: NextApiHandler = async (req, res) => {
   const { userId, eventId } = req.body;
   try {
-    await killUser({ userId, eventId });
     await logout({ userId });
     res.status(200).json({ message: "ok" });
   } catch (err) {

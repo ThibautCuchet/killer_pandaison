@@ -55,9 +55,7 @@ const Killer = () => {
   );
 
   const handleLogout = () => {
-    const accept = confirm(
-      "Es-tu sûr de vouloir te déconnecter ? Tu seras automatiquement killé !"
-    );
+    const accept = confirm("Es-tu sûr de vouloir te déconnecter ?");
     if (accept) {
       logoutMutation.mutate();
     }
