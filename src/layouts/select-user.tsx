@@ -2,6 +2,7 @@ import { Combobox, Transition } from "@headlessui/react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import gql from "graphql-tag";
+import Link from "next/link";
 import { Fragment, useContext, useState } from "react";
 import { GameContext, User } from "../contexts/game";
 import {
@@ -117,7 +118,13 @@ const SelectUser = () => {
           </Combobox>
         )}
 
-        <div className="mt-10">
+        <div className="flex justify-between w-full gap-2 mt-10">
+          <Link href="/regles">
+            <span className="inline-flex items-center justify-center w-24 px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm disabled:cursor-not-allowed disabled:bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ">
+              Règles
+            </span>
+          </Link>
+
           <button
             type="button"
             disabled={!selectedUser}
