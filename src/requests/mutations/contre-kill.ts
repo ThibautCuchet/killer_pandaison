@@ -57,7 +57,11 @@ const contreKillUser = async ({
       ) {
         killed: update_games_by_pk(
           pk_columns: { event_id: $eventId, user_id: $userId }
-          _set: { killed_at: "now()", killed_by_id: $killedBy }
+          _set: {
+            killed_at: "now()"
+            killed_by_id: $killedBy
+            to_kill_id: null
+          }
         ) {
           user_id
         }
