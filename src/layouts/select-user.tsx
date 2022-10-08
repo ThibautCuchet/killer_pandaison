@@ -120,7 +120,7 @@ const SelectUser = () => {
 
         <div className="flex justify-between w-full gap-2 mt-10">
           <Link href="/regles">
-            <span className="inline-flex items-center justify-center w-24 px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm disabled:cursor-not-allowed disabled:bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ">
+            <span className="inline-flex items-center justify-center w-24 px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-secondary disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ">
               Règles
             </span>
           </Link>
@@ -132,7 +132,7 @@ const SelectUser = () => {
               setUser(selectedUser as User);
               presentMutation.mutateAsync({ userId: selectedUser?.id });
             }}
-            className="inline-flex items-center justify-center w-24 px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm disabled:cursor-not-allowed disabled:bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="inline-flex items-center justify-center w-24 px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-secondary disabled:cursor-not-allowed disabled:bg-disabled focus:outline-none focus:ring-2 focus:ring-offset-2"
           >
             Go
           </button>

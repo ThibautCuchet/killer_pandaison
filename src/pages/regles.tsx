@@ -14,7 +14,7 @@ const Home: NextPage = () => {
           <ChevronLeftIcon className="w-8 h-8 text-white" />
         </Link>
       </div>
-      <div>
+      <div className="p-4 text-2xl">
         <p className="font-bold">
           Les règles sont simples, tu dois tuer tout le monde !
         </p>
