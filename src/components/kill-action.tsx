@@ -67,13 +67,13 @@ const KillAction = () => {
     <div className="flex gap-3">
       <button
         onClick={handleKill}
-        className="p-2 text-white bg-blue-600 rounded"
+        className="p-2 text-white rounded bg-secondary"
       >
         J&lsquo;ai été killé
       </button>
       <button
         onClick={handleContreKill}
-        className="p-2 text-white bg-blue-600 rounded"
+        className="p-2 text-white rounded bg-secondary"
       >
         J&lsquo;ai été contre-killé
       </button>

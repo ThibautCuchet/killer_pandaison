@@ -63,8 +63,8 @@ const SelectUser = () => {
         });
 
   return (
-    <div className="fixed top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%]">
-      <h1>Welcome to Pendaison</h1>
+    <div className="fixed top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] flex items-center flex-col">
+      <h1>Killer</h1>
       <div className="flex flex-col items-end">
         {isLoading ? (
           <div>Loading...</div>
