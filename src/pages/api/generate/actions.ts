@@ -81,7 +81,9 @@ const handler: NextApiHandler = async (req, res) => {
 
     res.json(result);
   } catch (err) {
-    res.status(500).json({ err });
+    res
+      .status(500)
+      .json({ err, secret: process.env.HASURA_GRAPHQL_ADMIN_SECRET });
   }
 };
 
