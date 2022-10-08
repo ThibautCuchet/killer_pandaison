@@ -70,3 +70,5 @@ const handler: NextApiHandler = async (req, res) => {
       .json({ err, secret: process.env.HASURA_GRAPHQL_ADMIN_SECRET });
   }
 };
+
+export default handler;
