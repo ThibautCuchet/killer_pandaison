@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       ) : (
         <>
           <SelectUser />
-          <div className="fixed bottom-0 p-5 text-lg">
+          <div className="absolute bottom-0 p-5 text-lg">
             <p className="font-bold">
               Les règles sont simples, tu dois tuer tout le monde !
             </p>
