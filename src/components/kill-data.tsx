@@ -2,7 +2,7 @@ import { FC } from "react";
 import { GetToKillQuery } from "../types/graphql";
 
 const KillData: FC<{
-  killerData: GetToKillQuery["games"][number]["to_kill"];
+  killerData: any;
 }> = ({ killerData: { fullname, kills } }) => {
   return (
     <div className="flex flex-col gap-5">

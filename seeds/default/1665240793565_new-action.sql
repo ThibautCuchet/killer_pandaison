@@ -21,4 +21,12 @@ INSERT INTO public.actions (id, action) VALUES (21, 'Demander à la personne qui
 INSERT INTO public.actions (id, action) VALUES (22, 'Faire en sorte que la personne tienne ton verre pendant + de 10 secondes');
 INSERT INTO public.actions (id, action) VALUES (24, 'Obtenir le synopsis d''une série');
 INSERT INTO public.actions (id, action) VALUES (23, 'Obtenir sa célébrité préféré(e)');
-SELECT pg_catalog.setval('public.actions_id_seq', 24, true);
+INSERT INTO public.actions (id, action) VALUES (25, 'Dessiner sur la personne avec son consentement ');
+INSERT INTO public.actions (id, action) VALUES (26, 'Se faire dessiner dessus par la personne');
+INSERT INTO public.actions (id, action) VALUES (27, 'Faire dire par la personne une réplique célèbre (films, ...)');
+INSERT INTO public.actions (id, action) VALUES (28, 'Faire prendre une photo de toi avec des potes par la personne');
+INSERT INTO public.actions (id, action) VALUES (29, 'Se faire montrer une photo par la personne (sur son téléphone)');
+INSERT INTO public.actions (id, action) VALUES (30, 'Avoir la date de naissance de la personne');
+INSERT INTO public.actions (id, action) VALUES (31, 'Faire boire un soft/eau à la personne');
+INSERT INTO public.actions (id, action) VALUES (32, 'Utiliser le téléphone de la personne pour faire quelque chose (pas juste regarder l''heure)');
+SELECT pg_catalog.setval('public.actions_id_seq', 32, true);

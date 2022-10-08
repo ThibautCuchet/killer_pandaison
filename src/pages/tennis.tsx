@@ -9,8 +9,6 @@ import SelectUser from "../layouts/select-user";
 import {
   GetNextTennisQuery,
   GetNextTennisQueryVariables,
-  IsInscritQuery,
-  IsInscritQueryVariables,
 } from "../types/graphql";
 import { hasura } from "../utils/gql";
 

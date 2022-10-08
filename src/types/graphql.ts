@@ -295,6 +295,10 @@ export type Events = {
   /** An aggregate relationship */
   kills_aggregate: Kills_Aggregate;
   start_date: Scalars['timestamptz'];
+  /** An array relationship */
+  tennis: Array<Tennis>;
+  /** An aggregate relationship */
+  tennis_aggregate: Tennis_Aggregate;
   type: Scalars['String'];
 };
 
@@ -338,6 +342,26 @@ export type EventsKills_AggregateArgs = {
   where?: InputMaybe<Kills_Bool_Exp>;
 };
 
+
+/** columns and relationships of "events" */
+export type EventsTennisArgs = {
+  distinct_on?: InputMaybe<Array<Tennis_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Tennis_Order_By>>;
+  where?: InputMaybe<Tennis_Bool_Exp>;
+};
+
+
+/** columns and relationships of "events" */
+export type EventsTennis_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tennis_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Tennis_Order_By>>;
+  where?: InputMaybe<Tennis_Bool_Exp>;
+};
+
 /** aggregated selection of "events" */
 export type Events_Aggregate = {
   __typename?: 'events_aggregate';
@@ -370,6 +394,7 @@ export type Events_Bool_Exp = {
   id?: InputMaybe<Uuid_Comparison_Exp>;
   kills?: InputMaybe<Kills_Bool_Exp>;
   start_date?: InputMaybe<Timestamptz_Comparison_Exp>;
+  tennis?: InputMaybe<Tennis_Bool_Exp>;
   type?: InputMaybe<String_Comparison_Exp>;
 };
 
@@ -386,6 +411,7 @@ export type Events_Insert_Input = {
   id?: InputMaybe<Scalars['uuid']>;
   kills?: InputMaybe<Kills_Arr_Rel_Insert_Input>;
   start_date?: InputMaybe<Scalars['timestamptz']>;
+  tennis?: InputMaybe<Tennis_Arr_Rel_Insert_Input>;
   type?: InputMaybe<Scalars['String']>;
 };
 
@@ -437,6 +463,7 @@ export type Events_Order_By = {
   id?: InputMaybe<Order_By>;
   kills_aggregate?: InputMaybe<Kills_Aggregate_Order_By>;
   start_date?: InputMaybe<Order_By>;
+  tennis_aggregate?: InputMaybe<Tennis_Aggregate_Order_By>;
   type?: InputMaybe<Order_By>;
 };
 
@@ -1343,9 +1370,9 @@ export type Query_Root = {
   kills_aggregate: Kills_Aggregate;
   /** fetch data from the table: "kills" using primary key columns */
   kills_by_pk?: Maybe<Kills>;
-  /** fetch data from the table: "tennis" */
+  /** An array relationship */
   tennis: Array<Tennis>;
-  /** fetch aggregated fields from the table: "tennis" */
+  /** An aggregate relationship */
   tennis_aggregate: Tennis_Aggregate;
   /** fetch data from the table: "tennis" using primary key columns */
   tennis_by_pk?: Maybe<Tennis>;
@@ -1524,9 +1551,9 @@ export type Subscription_Root = {
   kills_aggregate: Kills_Aggregate;
   /** fetch data from the table: "kills" using primary key columns */
   kills_by_pk?: Maybe<Kills>;
-  /** fetch data from the table: "tennis" */
+  /** An array relationship */
   tennis: Array<Tennis>;
-  /** fetch aggregated fields from the table: "tennis" */
+  /** An aggregate relationship */
   tennis_aggregate: Tennis_Aggregate;
   /** fetch data from the table: "tennis" using primary key columns */
   tennis_by_pk?: Maybe<Tennis>;
@@ -1682,7 +1709,11 @@ export type Subscription_RootUsers_By_PkArgs = {
 /** columns and relationships of "tennis" */
 export type Tennis = {
   __typename?: 'tennis';
+  /** An object relationship */
+  event: Events;
   event_id: Scalars['uuid'];
+  /** An object relationship */
+  user: Users;
   user_id: Scalars['uuid'];
 };
 
@@ -1708,12 +1739,28 @@ export type Tennis_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "tennis" */
+export type Tennis_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Tennis_Max_Order_By>;
+  min?: InputMaybe<Tennis_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "tennis" */
+export type Tennis_Arr_Rel_Insert_Input = {
+  data: Array<Tennis_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Tennis_On_Conflict>;
+};
+
 /** Boolean expression to filter rows from the table "tennis". All fields are combined with a logical 'AND'. */
 export type Tennis_Bool_Exp = {
   _and?: InputMaybe<Array<Tennis_Bool_Exp>>;
   _not?: InputMaybe<Tennis_Bool_Exp>;
   _or?: InputMaybe<Array<Tennis_Bool_Exp>>;
+  event?: InputMaybe<Events_Bool_Exp>;
   event_id?: InputMaybe<Uuid_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
   user_id?: InputMaybe<Uuid_Comparison_Exp>;
 };
 
@@ -1725,7 +1772,9 @@ export enum Tennis_Constraint {
 
 /** input type for inserting data into table "tennis" */
 export type Tennis_Insert_Input = {
+  event?: InputMaybe<Events_Obj_Rel_Insert_Input>;
   event_id?: InputMaybe<Scalars['uuid']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
 
@@ -1736,11 +1785,23 @@ export type Tennis_Max_Fields = {
   user_id?: Maybe<Scalars['uuid']>;
 };
 
+/** order by max() on columns of table "tennis" */
+export type Tennis_Max_Order_By = {
+  event_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
 /** aggregate min on columns */
 export type Tennis_Min_Fields = {
   __typename?: 'tennis_min_fields';
   event_id?: Maybe<Scalars['uuid']>;
   user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "tennis" */
+export type Tennis_Min_Order_By = {
+  event_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "tennis" */
@@ -1761,7 +1822,9 @@ export type Tennis_On_Conflict = {
 
 /** Ordering options when selecting data from "tennis". */
 export type Tennis_Order_By = {
+  event?: InputMaybe<Events_Order_By>;
   event_id?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
 
@@ -1831,6 +1894,10 @@ export type Users = {
   /** An aggregate relationship */
   kills_aggregate: Kills_Aggregate;
   lastname: Scalars['String'];
+  /** An array relationship */
+  tennis: Array<Tennis>;
+  /** An aggregate relationship */
+  tennis_aggregate: Tennis_Aggregate;
 };
 
 
@@ -1913,6 +1980,26 @@ export type UsersKills_AggregateArgs = {
   where?: InputMaybe<Kills_Bool_Exp>;
 };
 
+
+/** columns and relationships of "users" */
+export type UsersTennisArgs = {
+  distinct_on?: InputMaybe<Array<Tennis_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Tennis_Order_By>>;
+  where?: InputMaybe<Tennis_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersTennis_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tennis_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Tennis_Order_By>>;
+  where?: InputMaybe<Tennis_Bool_Exp>;
+};
+
 /** aggregated selection of "users" */
 export type Users_Aggregate = {
   __typename?: 'users_aggregate';
@@ -1949,6 +2036,7 @@ export type Users_Bool_Exp = {
   is_present?: InputMaybe<Boolean_Comparison_Exp>;
   kills?: InputMaybe<Kills_Bool_Exp>;
   lastname?: InputMaybe<String_Comparison_Exp>;
+  tennis?: InputMaybe<Tennis_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "users" */
@@ -1969,6 +2057,7 @@ export type Users_Insert_Input = {
   is_present?: InputMaybe<Scalars['Boolean']>;
   kills?: InputMaybe<Kills_Arr_Rel_Insert_Input>;
   lastname?: InputMaybe<Scalars['String']>;
+  tennis?: InputMaybe<Tennis_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -2021,6 +2110,7 @@ export type Users_Order_By = {
   is_present?: InputMaybe<Order_By>;
   kills_aggregate?: InputMaybe<Kills_Aggregate_Order_By>;
   lastname?: InputMaybe<Order_By>;
+  tennis_aggregate?: InputMaybe<Tennis_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: users */
@@ -2116,13 +2206,13 @@ export type GetNextTennisQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetNextTennisQuery = { __typename?: 'query_root', events: Array<{ __typename?: 'events', id: any, start_date: any }> };
 
-export type IsInscritQueryVariables = Exact<{
+export type InscrireMutationVariables = Exact<{
   eventId: Scalars['uuid'];
   userId: Scalars['uuid'];
 }>;
 
 
-export type IsInscritQuery = { __typename?: 'query_root', tennis: Array<{ __typename?: 'tennis', user_id: any }> };
+export type InscrireMutation = { __typename?: 'mutation_root', insert_tennis_one?: { __typename?: 'tennis', event_id: any } | null };
 
 export type GetGameContreUserQueryVariables = Exact<{
   userId: Scalars['uuid'];
