@@ -15,10 +15,13 @@ const Home: NextPage = () => {
         <>
           <SelectUser />
           <div className="fixed bottom-0 p-5 text-lg">
-            <p>Les règles sont simples, tu dois tuer tout le monde !</p>
+            <p className="font-bold">
+              Les règles sont simples, tu dois tuer tout le monde !
+            </p>
             Pour ce faire, tu recevras une personne et une action. Si la
             personne réalise cette action, elle est killé. Si jamais tu pars
-            n'oublie pas de te déconnecter pour éviter de bloquer le jeux.
+            n&lsquo;oublie pas de te déconnecter pour éviter de bloquer le jeux.
+            Vérifie ton téléphone régulièrement car ton kill peut changer.
           </div>
         </>
       )}
