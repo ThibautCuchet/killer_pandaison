@@ -14,7 +14,7 @@ const handler: NextApiHandler = async (req, res) => {
     const usersQuery = await hasura<GetPlayersQuery, GetPlayersQueryVariables>(
       gql`
         query GetPlayers {
-          users {
+          users(where: { is_present: { _eq: true } }) {
             id
           }
           actions {
