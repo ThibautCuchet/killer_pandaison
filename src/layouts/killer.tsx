@@ -10,7 +10,7 @@ import {
 } from "../types/graphql";
 import { hasura } from "../utils/gql";
 const Killer = () => {
-  const { event, setEvent, setUser } = useContext(GameContext);
+  const { event, setEvent, setUser, user } = useContext(GameContext);
 
   useQuery(
     ["next-killer"],
@@ -37,11 +37,22 @@ const Killer = () => {
     }
   );
 
-  const logoutMutation = useMutation(["logout"], () => fetch("/api/logout"), {
-    onSuccess: () => {
-      setUser(null);
-    },
-  });
+  const logoutMutation = useMutation(
+    ["logout"],
+    () =>
+      fetch("/api/logout", {
+        method: "POST",
+        body: JSON.stringify({
+          eventId: event?.id,
+          userId: user?.id,
+        }),
+      }),
+    {
+      onSuccess: () => {
+        setUser(null);
+      },
+    }
+  );
 
   const handleLogout = () => {
     const accept = confirm(
