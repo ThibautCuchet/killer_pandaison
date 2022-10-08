@@ -18,7 +18,12 @@ const handler: NextApiHandler = async (req, res) => {
             id
           }
         }
-      `
+      `,
+      {},
+      {},
+      {
+        "x-hasura-admin-secret": process.env.HASURA_GRAPHQL_ADMIN_SECRET || "",
+      }
     );
 
     const notInGame = allUsers.users.filter(
