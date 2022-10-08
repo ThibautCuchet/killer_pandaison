@@ -53,7 +53,7 @@ const Killer = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen p-4">
       <div className="absolute top-0 left-0 flex items-center justify-end w-full h-20 p-3 bg-blue-600">
         <button onClick={handleLogout}>
           <ArrowLeftOnRectangleIcon className="w-8 h-8 text-white" />
