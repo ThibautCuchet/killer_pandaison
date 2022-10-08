@@ -492,8 +492,8 @@ export type Games = {
   killed_by?: Maybe<Users>;
   killed_by_id?: Maybe<Scalars['uuid']>;
   /** An object relationship */
-  to_kill: Users;
-  to_kill_id: Scalars['uuid'];
+  to_kill?: Maybe<Users>;
+  to_kill_id?: Maybe<Scalars['uuid']>;
   /** An object relationship */
   user: Users;
   user_id: Scalars['uuid'];
@@ -996,6 +996,10 @@ export type Mutation_Root = {
   delete_kills?: Maybe<Kills_Mutation_Response>;
   /** delete single row from the table: "kills" */
   delete_kills_by_pk?: Maybe<Kills>;
+  /** delete data from the table: "tennis" */
+  delete_tennis?: Maybe<Tennis_Mutation_Response>;
+  /** delete single row from the table: "tennis" */
+  delete_tennis_by_pk?: Maybe<Tennis>;
   /** delete data from the table: "users" */
   delete_users?: Maybe<Users_Mutation_Response>;
   /** delete single row from the table: "users" */
@@ -1016,6 +1020,10 @@ export type Mutation_Root = {
   insert_kills?: Maybe<Kills_Mutation_Response>;
   /** insert a single row into the table: "kills" */
   insert_kills_one?: Maybe<Kills>;
+  /** insert data into the table: "tennis" */
+  insert_tennis?: Maybe<Tennis_Mutation_Response>;
+  /** insert a single row into the table: "tennis" */
+  insert_tennis_one?: Maybe<Tennis>;
   /** insert data into the table: "users" */
   insert_users?: Maybe<Users_Mutation_Response>;
   /** insert a single row into the table: "users" */
@@ -1036,6 +1044,10 @@ export type Mutation_Root = {
   update_kills?: Maybe<Kills_Mutation_Response>;
   /** update single row of the table: "kills" */
   update_kills_by_pk?: Maybe<Kills>;
+  /** update data of the table: "tennis" */
+  update_tennis?: Maybe<Tennis_Mutation_Response>;
+  /** update single row of the table: "tennis" */
+  update_tennis_by_pk?: Maybe<Tennis>;
   /** update data of the table: "users" */
   update_users?: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
@@ -1088,6 +1100,19 @@ export type Mutation_RootDelete_KillsArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Kills_By_PkArgs = {
+  event_id: Scalars['uuid'];
+  user_id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_TennisArgs = {
+  where: Tennis_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Tennis_By_PkArgs = {
   event_id: Scalars['uuid'];
   user_id: Scalars['uuid'];
 };
@@ -1158,6 +1183,20 @@ export type Mutation_RootInsert_KillsArgs = {
 export type Mutation_RootInsert_Kills_OneArgs = {
   object: Kills_Insert_Input;
   on_conflict?: InputMaybe<Kills_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_TennisArgs = {
+  objects: Array<Tennis_Insert_Input>;
+  on_conflict?: InputMaybe<Tennis_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Tennis_OneArgs = {
+  object: Tennis_Insert_Input;
+  on_conflict?: InputMaybe<Tennis_On_Conflict>;
 };
 
 
@@ -1236,6 +1275,20 @@ export type Mutation_RootUpdate_Kills_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_TennisArgs = {
+  _set?: InputMaybe<Tennis_Set_Input>;
+  where: Tennis_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Tennis_By_PkArgs = {
+  _set?: InputMaybe<Tennis_Set_Input>;
+  pk_columns: Tennis_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_UsersArgs = {
   _set?: InputMaybe<Users_Set_Input>;
   where: Users_Bool_Exp;
@@ -1290,6 +1343,12 @@ export type Query_Root = {
   kills_aggregate: Kills_Aggregate;
   /** fetch data from the table: "kills" using primary key columns */
   kills_by_pk?: Maybe<Kills>;
+  /** fetch data from the table: "tennis" */
+  tennis: Array<Tennis>;
+  /** fetch aggregated fields from the table: "tennis" */
+  tennis_aggregate: Tennis_Aggregate;
+  /** fetch data from the table: "tennis" using primary key columns */
+  tennis_by_pk?: Maybe<Tennis>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -1393,6 +1452,30 @@ export type Query_RootKills_By_PkArgs = {
 };
 
 
+export type Query_RootTennisArgs = {
+  distinct_on?: InputMaybe<Array<Tennis_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Tennis_Order_By>>;
+  where?: InputMaybe<Tennis_Bool_Exp>;
+};
+
+
+export type Query_RootTennis_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tennis_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Tennis_Order_By>>;
+  where?: InputMaybe<Tennis_Bool_Exp>;
+};
+
+
+export type Query_RootTennis_By_PkArgs = {
+  event_id: Scalars['uuid'];
+  user_id: Scalars['uuid'];
+};
+
+
 export type Query_RootUsersArgs = {
   distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -1441,6 +1524,12 @@ export type Subscription_Root = {
   kills_aggregate: Kills_Aggregate;
   /** fetch data from the table: "kills" using primary key columns */
   kills_by_pk?: Maybe<Kills>;
+  /** fetch data from the table: "tennis" */
+  tennis: Array<Tennis>;
+  /** fetch aggregated fields from the table: "tennis" */
+  tennis_aggregate: Tennis_Aggregate;
+  /** fetch data from the table: "tennis" using primary key columns */
+  tennis_by_pk?: Maybe<Tennis>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -1544,6 +1633,30 @@ export type Subscription_RootKills_By_PkArgs = {
 };
 
 
+export type Subscription_RootTennisArgs = {
+  distinct_on?: InputMaybe<Array<Tennis_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Tennis_Order_By>>;
+  where?: InputMaybe<Tennis_Bool_Exp>;
+};
+
+
+export type Subscription_RootTennis_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tennis_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Tennis_Order_By>>;
+  where?: InputMaybe<Tennis_Bool_Exp>;
+};
+
+
+export type Subscription_RootTennis_By_PkArgs = {
+  event_id: Scalars['uuid'];
+  user_id: Scalars['uuid'];
+};
+
+
 export type Subscription_RootUsersArgs = {
   distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -1565,6 +1678,120 @@ export type Subscription_RootUsers_AggregateArgs = {
 export type Subscription_RootUsers_By_PkArgs = {
   id: Scalars['uuid'];
 };
+
+/** columns and relationships of "tennis" */
+export type Tennis = {
+  __typename?: 'tennis';
+  event_id: Scalars['uuid'];
+  user_id: Scalars['uuid'];
+};
+
+/** aggregated selection of "tennis" */
+export type Tennis_Aggregate = {
+  __typename?: 'tennis_aggregate';
+  aggregate?: Maybe<Tennis_Aggregate_Fields>;
+  nodes: Array<Tennis>;
+};
+
+/** aggregate fields of "tennis" */
+export type Tennis_Aggregate_Fields = {
+  __typename?: 'tennis_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Tennis_Max_Fields>;
+  min?: Maybe<Tennis_Min_Fields>;
+};
+
+
+/** aggregate fields of "tennis" */
+export type Tennis_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Tennis_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "tennis". All fields are combined with a logical 'AND'. */
+export type Tennis_Bool_Exp = {
+  _and?: InputMaybe<Array<Tennis_Bool_Exp>>;
+  _not?: InputMaybe<Tennis_Bool_Exp>;
+  _or?: InputMaybe<Array<Tennis_Bool_Exp>>;
+  event_id?: InputMaybe<Uuid_Comparison_Exp>;
+  user_id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "tennis" */
+export enum Tennis_Constraint {
+  /** unique or primary key constraint */
+  TennisPkey = 'tennis_pkey'
+}
+
+/** input type for inserting data into table "tennis" */
+export type Tennis_Insert_Input = {
+  event_id?: InputMaybe<Scalars['uuid']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Tennis_Max_Fields = {
+  __typename?: 'tennis_max_fields';
+  event_id?: Maybe<Scalars['uuid']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate min on columns */
+export type Tennis_Min_Fields = {
+  __typename?: 'tennis_min_fields';
+  event_id?: Maybe<Scalars['uuid']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** response of any mutation on the table "tennis" */
+export type Tennis_Mutation_Response = {
+  __typename?: 'tennis_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Tennis>;
+};
+
+/** on_conflict condition type for table "tennis" */
+export type Tennis_On_Conflict = {
+  constraint: Tennis_Constraint;
+  update_columns?: Array<Tennis_Update_Column>;
+  where?: InputMaybe<Tennis_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "tennis". */
+export type Tennis_Order_By = {
+  event_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: tennis */
+export type Tennis_Pk_Columns_Input = {
+  event_id: Scalars['uuid'];
+  user_id: Scalars['uuid'];
+};
+
+/** select columns of table "tennis" */
+export enum Tennis_Select_Column {
+  /** column name */
+  EventId = 'event_id',
+  /** column name */
+  UserId = 'user_id'
+}
+
+/** input type for updating data in table "tennis" */
+export type Tennis_Set_Input = {
+  event_id?: InputMaybe<Scalars['uuid']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "tennis" */
+export enum Tennis_Update_Column {
+  /** column name */
+  EventId = 'event_id',
+  /** column name */
+  UserId = 'user_id'
+}
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
 export type Timestamptz_Comparison_Exp = {
@@ -1852,7 +2079,7 @@ export type GetToKillQueryVariables = Exact<{
 }>;
 
 
-export type GetToKillQuery = { __typename?: 'query_root', games: Array<{ __typename?: 'games', to_kill: { __typename?: 'users', fullname?: string | null, kills: Array<{ __typename?: 'kills', action: { __typename?: 'actions', action: string } }> }, killed_by?: { __typename?: 'users', fullname?: string | null } | null }> };
+export type GetToKillQuery = { __typename?: 'query_root', games: Array<{ __typename?: 'games', to_kill?: { __typename?: 'users', fullname?: string | null, kills: Array<{ __typename?: 'kills', action: { __typename?: 'actions', action: string } }> } | null, killed_by?: { __typename?: 'users', fullname?: string | null } | null }> };
 
 export type GetNextKillerQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1863,32 +2090,6 @@ export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetUsersQuery = { __typename?: 'query_root', users: Array<{ __typename?: 'users', id: any, fullname?: string | null }> };
-
-export type SetPresentMutationVariables = Exact<{
-  userId: Scalars['uuid'];
-}>;
-
-
-export type SetPresentMutation = { __typename?: 'mutation_root', update_users?: { __typename?: 'users_mutation_response', affected_rows: number } | null };
-
-export type GetGameContreUserQueryVariables = Exact<{
-  userId: Scalars['uuid'];
-  eventId: Scalars['uuid'];
-}>;
-
-
-export type GetGameContreUserQuery = { __typename?: 'query_root', games: Array<{ __typename?: 'games', to_kill_id: any, user_id: any, to_kill: { __typename?: 'users', fullname?: string | null }, have_to_kill_by?: { __typename?: 'games', user_id: any, user: { __typename?: 'users', fullname?: string | null } } | null, kill?: { __typename?: 'kills', action_id: number } | null }> };
-
-export type UpdateContreGameMutationVariables = Exact<{
-  eventId: Scalars['uuid'];
-  userId: Scalars['uuid'];
-  killedBy: Scalars['uuid'];
-  haveToKill: Scalars['uuid'];
-  actionId: Scalars['Int'];
-}>;
-
-
-export type UpdateContreGameMutation = { __typename?: 'mutation_root', killed?: { __typename?: 'games', user_id: any } | null, killer?: { __typename?: 'games', user_id: any } | null, update_kills?: { __typename?: 'kills_mutation_response', affected_rows: number } | null };
 
 export type GetPlayersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1903,13 +2104,52 @@ export type InsertKillsMutationVariables = Exact<{
 
 export type InsertKillsMutation = { __typename?: 'mutation_root', insert_kills?: { __typename?: 'kills_mutation_response', affected_rows: number } | null, insert_games?: { __typename?: 'games_mutation_response', affected_rows: number } | null };
 
+export type SetPresentMutationVariables = Exact<{
+  userId: Scalars['uuid'];
+}>;
+
+
+export type SetPresentMutation = { __typename?: 'mutation_root', update_users?: { __typename?: 'users_mutation_response', affected_rows: number } | null };
+
+export type GetNextTennisQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetNextTennisQuery = { __typename?: 'query_root', events: Array<{ __typename?: 'events', id: any, start_date: any }> };
+
+export type IsInscritQueryVariables = Exact<{
+  eventId: Scalars['uuid'];
+  userId: Scalars['uuid'];
+}>;
+
+
+export type IsInscritQuery = { __typename?: 'query_root', tennis: Array<{ __typename?: 'tennis', user_id: any }> };
+
+export type GetGameContreUserQueryVariables = Exact<{
+  userId: Scalars['uuid'];
+  eventId: Scalars['uuid'];
+}>;
+
+
+export type GetGameContreUserQuery = { __typename?: 'query_root', games: Array<{ __typename?: 'games', to_kill_id?: any | null, user_id: any, to_kill?: { __typename?: 'users', fullname?: string | null } | null, have_to_kill_by?: { __typename?: 'games', user_id: any, user: { __typename?: 'users', fullname?: string | null } } | null, kill?: { __typename?: 'kills', action_id: number } | null }> };
+
+export type UpdateContreGameMutationVariables = Exact<{
+  eventId: Scalars['uuid'];
+  userId: Scalars['uuid'];
+  killedBy: Scalars['uuid'];
+  haveToKill: Scalars['uuid'];
+  actionId: Scalars['Int'];
+}>;
+
+
+export type UpdateContreGameMutation = { __typename?: 'mutation_root', killed?: { __typename?: 'games', user_id: any } | null, killer?: { __typename?: 'games', user_id: any } | null, update_kills?: { __typename?: 'kills_mutation_response', affected_rows: number } | null };
+
 export type GetGameUserQueryVariables = Exact<{
   userId: Scalars['uuid'];
   eventId: Scalars['uuid'];
 }>;
 
 
-export type GetGameUserQuery = { __typename?: 'query_root', games: Array<{ __typename?: 'games', to_kill_id: any, user_id: any, have_to_kill_by?: { __typename?: 'games', user_id: any, user: { __typename?: 'users', fullname?: string | null } } | null }> };
+export type GetGameUserQuery = { __typename?: 'query_root', games: Array<{ __typename?: 'games', to_kill_id?: any | null, user_id: any, have_to_kill_by?: { __typename?: 'games', user_id: any, user: { __typename?: 'users', fullname?: string | null } } | null }> };
 
 export type UpdateGameMutationVariables = Exact<{
   eventId: Scalars['uuid'];

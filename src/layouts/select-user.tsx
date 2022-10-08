@@ -1,20 +1,22 @@
 import { Combobox, Transition } from "@headlessui/react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  useMutation,
+  UseMutationResult,
+  useQuery,
+} from "@tanstack/react-query";
 import gql from "graphql-tag";
 import Link from "next/link";
-import { Fragment, useContext, useState } from "react";
+import { FC, Fragment, useContext, useState } from "react";
 import { GameContext, User } from "../contexts/game";
-import {
-  GetUsersQuery,
-  GetUsersQueryVariables,
-  SetPresentMutation,
-  SetPresentMutationVariables,
-} from "../types/graphql";
+import { GetUsersQuery, GetUsersQueryVariables } from "../types/graphql";
 import { hasura } from "../utils/gql";
 
-const SelectUser = () => {
-  const { setUser } = useContext(GameContext);
+const SelectUser: FC<{
+  onConfirm: (user: User) => void;
+  showRules?: boolean;
+  title: string;
+}> = ({ onConfirm, showRules, title }) => {
   const [selectedUser, setSelectedUser] = useState<User>();
 
   const [query, setQuery] = useState("");
@@ -33,28 +35,6 @@ const SelectUser = () => {
     `)
   );
 
-  const presentMutation = useMutation<
-    SetPresentMutation,
-    unknown,
-    SetPresentMutationVariables
-  >(["set-resent"], ({ userId }) =>
-    hasura<SetPresentMutation, SetPresentMutationVariables>(
-      gql`
-        mutation SetPresent($userId: uuid!) {
-          update_users(
-            where: { id: { _eq: $userId } }
-            _set: { is_present: true }
-          ) {
-            affected_rows
-          }
-        }
-      `,
-      {
-        userId,
-      }
-    )
-  );
-
   const filteredPeople =
     query === ""
       ? data?.users
@@ -65,7 +45,7 @@ const SelectUser = () => {
 
   return (
     <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] flex items-center flex-col">
-      <h1>Killer</h1>
+      <h1>{title}</h1>
       <div className="flex flex-col items-end">
         {isLoading ? (
           <div>Loading...</div>
@@ -118,24 +98,24 @@ const SelectUser = () => {
           </Combobox>
         )}
 
-        <div className="flex justify-between w-full gap-2 mt-10">
-          <Link href="/regles">
-            <span className="inline-flex items-center justify-center w-24 px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-secondary disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ">
-              Règles
-            </span>
-          </Link>
-
+        <div className="flex flex-row-reverse justify-between w-full gap-2 mt-10 ">
           <button
             type="button"
             disabled={!selectedUser}
             onClick={() => {
-              setUser(selectedUser as User);
-              presentMutation.mutateAsync({ userId: selectedUser?.id });
+              onConfirm(selectedUser as User);
             }}
             className="inline-flex items-center justify-center w-24 px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-secondary disabled:cursor-not-allowed disabled:bg-disabled focus:outline-none focus:ring-2 focus:ring-offset-2"
           >
             Go
           </button>
+          {showRules && (
+            <Link href="/regles">
+              <span className="inline-flex items-center justify-center w-24 px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-secondary disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ">
+                Règles
+              </span>
+            </Link>
+          )}
         </div>
       </div>
     </div>

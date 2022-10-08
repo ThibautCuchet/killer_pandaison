@@ -1,0 +1,1 @@
+CREATE TABLE "public"."tennis" ("event_id" uuid NOT NULL, "user_id" uuid NOT NULL, PRIMARY KEY ("event_id","user_id") , FOREIGN KEY ("event_id") REFERENCES "public"."events"("id") ON UPDATE restrict ON DELETE restrict, FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON UPDATE restrict ON DELETE restrict);

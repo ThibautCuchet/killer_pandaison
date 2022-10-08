@@ -16,6 +16,13 @@ array_relationships:
         table:
           schema: public
           name: kills
+  - name: tennis
+    using:
+      foreign_key_constraint_on:
+        column: event_id
+        table:
+          schema: public
+          name: tennis
 select_permissions:
   - role: anonymous
     permission:

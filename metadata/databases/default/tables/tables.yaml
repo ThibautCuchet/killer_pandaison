@@ -2,4 +2,5 @@
 - "!include public_events.yaml"
 - "!include public_games.yaml"
 - "!include public_kills.yaml"
+- "!include public_tennis.yaml"
 - "!include public_users.yaml"

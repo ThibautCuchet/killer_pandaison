@@ -1,0 +1,25 @@
+table:
+  schema: public
+  name: tennis
+object_relationships:
+  - name: event
+    using:
+      foreign_key_constraint_on: event_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - event_id
+        - user_id
+      backend_only: false
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - event_id
+        - user_id
+      filter: {}
