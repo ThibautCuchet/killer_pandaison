@@ -54,7 +54,11 @@ const Home: NextPage = () => {
               <ChevronLeftIcon className="w-8 h-8 text-white" />
             </Link>
           </div>
-          <SelectUser onConfirm={handleSelectUser} title="Killer" showRules />
+          <SelectUser
+            onConfirm={handleSelectUser}
+            title="Killer"
+            rulesUrl="/rules/killer"
+          />
         </>
       )}
     </div>

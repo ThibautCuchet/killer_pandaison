@@ -80,6 +80,7 @@ const Page: NextPage = () => {
               title={`Tennis à ${new Date(
                 nextTennis.data.events[0].start_date
               ).toLocaleTimeString()}`}
+              rulesUrl="/rules/tennis"
             />
           </>
         ) : (

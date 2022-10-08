@@ -14,9 +14,9 @@ import { hasura } from "../utils/gql";
 
 const SelectUser: FC<{
   onConfirm: (user: User) => void;
-  showRules?: boolean;
+  rulesUrl?: string;
   title: string;
-}> = ({ onConfirm, showRules, title }) => {
+}> = ({ onConfirm, rulesUrl, title }) => {
   const [selectedUser, setSelectedUser] = useState<User>();
 
   const [query, setQuery] = useState("");
@@ -109,8 +109,8 @@ const SelectUser: FC<{
           >
             Go
           </button>
-          {showRules && (
-            <Link href="/regles">
+          {rulesUrl && (
+            <Link href={rulesUrl}>
               <span className="inline-flex items-center justify-center w-24 px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-secondary disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ">
                 Règles
               </span>
