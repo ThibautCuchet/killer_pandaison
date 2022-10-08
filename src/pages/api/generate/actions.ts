@@ -6,7 +6,7 @@ import {
   GetPlayersQuery,
   GetPlayersQueryVariables,
 } from "../../../types/graphql";
-import { map, slice } from "lodash";
+import { map, shuffle, slice } from "lodash";
 
 const handler: NextApiHandler = async (req, res) => {
   const { eventId } = req.body;
@@ -29,8 +29,8 @@ const handler: NextApiHandler = async (req, res) => {
       }
     );
 
-    const players = usersQuery.users;
-    const actions = usersQuery.actions;
+    const players = shuffle(usersQuery.users);
+    const actions = shuffle(usersQuery.actions);
 
     const kills = map(players, (player, i) => ({
       event_id: eventId,
