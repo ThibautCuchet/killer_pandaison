@@ -51,6 +51,7 @@ const EventInformation: FC = () => {
       ),
     {
       enabled: !!event?.id && remain <= 0,
+      refetchInterval: 30 * 1000,
     }
   );
 

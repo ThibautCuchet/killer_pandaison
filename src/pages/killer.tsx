@@ -19,8 +19,8 @@ const Home: NextPage = () => {
               Les règles sont simples, tu dois tuer tout le monde !
             </p>
             Pour ce faire, tu recevras une personne et une action. Si la
-            personne réalise cette action, elle est killé. Si jamais tu pars
-            n&lsquo;oublie pas de te déconnecter pour éviter de bloquer le jeux.
+            personne réalise cette action, elle est killée. Si jamais tu pars
+            n&lsquo;oublie pas de te déconnecter pour éviter de bloquer le jeu.
             Vérifie ton téléphone régulièrement car ton kill peut changer.
           </div>
         </>
